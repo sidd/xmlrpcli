@@ -48,12 +48,12 @@ rl.setPrompt('> ')
 rl.prompt()
 
 // Handle input submission
-rl.on('line', line => { 
+rl.on('line', line => {
   line = line.trim()
   if (!line) return rl.prompt()
 
   // Allow multiple spaces between params
-  line = line.split(' ').filter(el => el) 
+  line = line.split(' ').filter(el => el)
 
   if (line[0].toLowerCase() === 'help') {
     return rtorrentHelp.apply(null, line.slice(1))
@@ -62,11 +62,11 @@ rl.on('line', line => {
   // Pass params if supplied, otherwise null
   Client.method(
     line[0],
-    null
+    null,
     line.length > 1 ? line.slice(1) : null,
     (err, res) => {
       if (err) {
-        console.error((err.res ? err.res.statusCode + ' ' : '') + 'Error: ' +  err.message)
+        console.error((err.res ? err.res.statusCode + ' ' : '') + 'Error: ' + err.message)
       } else {
         console.log(res)
       }
@@ -76,13 +76,12 @@ rl.on('line', line => {
   )
 })
 
-
-function rtorrentHelp() {
+function rtorrentHelp () {
   const args = [].slice.call(arguments)
-  
+
   Client.method('system.listMethods', true, (err, methods) => {
     if (err) {
-      console.error('Error: ' +  err.message)
+      console.error('Error: ' + err.message)
       return rl.prompt()
     }
 
@@ -90,10 +89,10 @@ function rtorrentHelp() {
     // otherwise there's just too much to show.
     if (!args.length) {
       console.log(methods.filter(m => m.split('.').length === 1).join('\n'))
-    }
+
     // if `help prefix|prefixes` is run
-    else if (['prefix', 'prefixes'].indexOf(args[0]) !== -1) {
-      prefixes = methods.reduce(
+    } else if (['prefix', 'prefixes'].indexOf(args[0]) !== -1) {
+      const prefixes = methods.reduce(
         (res, m) => {
           m = m.split('.')
 
@@ -104,10 +103,10 @@ function rtorrentHelp() {
         }, new Set()
       )
       console.log(Array.from(prefixes).join('\n'))
-    }
+
     // default filtering, only shows those that start with
     // "<name>."
-    else {
+    } else {
       console.log(methods.filter(m => m.split('.')[0] === args[0]).join('\n'))
     }
     rl.prompt()

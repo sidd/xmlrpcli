@@ -12,7 +12,7 @@ function XMLRPCClient (opts) {
     opt.basic_auth.user = opts.username
     opt.basic_auth.pass = opts.password
   }
-  
+
   opt.rejectUnauthorized = opt.insecure
 
   this.client = xmlrpc[opt.rejectUnauthorized ? 'createClient' : 'createSecureClient'](opt)

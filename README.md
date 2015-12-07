@@ -1,5 +1,7 @@
 # a cli for rtorrent xmlrpc api
 
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
 ## installation
 
 Requires Node.js v4.2 or later, and an accessible rTorrent XMLRPC endpoint.
