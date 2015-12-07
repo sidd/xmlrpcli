@@ -5,7 +5,7 @@ var argv = require('minimist')(process.argv.slice(2))
 var rl = readline.createInterface(process.stdin, process.stdout)
 
 if (!(argv.host || argv.h) || argv.help) {
-  console.error('usage: xmlrpcli [-h host] [--path path] [-u username] [-p password] ')
+  console.error('usage: xmlrpcli [-h host] [--path path] [-u username] [-p password] [[--insecure]]')
   process.exit(1)
 }
 
