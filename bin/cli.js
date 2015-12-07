@@ -21,7 +21,8 @@ const argv = require('minimist')(process.argv.slice(2), {
 
 if (process.argv.length === 2 || argv.help) {
   console.log(
-`usage: xmlrpcli [-h host] [-d path] [-u username] [-p password] [[--insecure]]
+`xmlrpcli v0.2.0
+usage: xmlrpcli [-h host] [-d path] [-u username] [-p password] [[--insecure]]
   -h, --host <host>
     Specify an IP address or domain name, without path or query string.
 
