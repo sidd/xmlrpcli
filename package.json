@@ -1,0 +1,31 @@
+{
+  "name": "xmlrpcli",
+  "version": "0.1.0",
+  "description": "basic rtorrent xmlrpc cli",
+  "main": "xmlrpcli.js",
+  "keywords": [
+    "rtorrent",
+    "xmlrpc",
+    "xml",
+    "rpc",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sidd/xmlrpcli.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "xmlrpc": "^1.3.1"
+  },
+  "bugs": {
+    "url": "https://github.com/sidd/xmlrpcli/issues"
+  },
+  "homepage": "https://github.com/sidd/xmlrpcli#readme",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sidd Sridharan <sidd@sidd.com> (http://sidd.com)"
+}
