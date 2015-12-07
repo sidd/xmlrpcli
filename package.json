@@ -4,7 +4,7 @@
   "description": "basic rtorrent xmlrpc cli",
   "main": "index.js",
   "bin": {
-    "xmlrpcli": "./index.js"
+    "xmlrpcli": "./bin/cli.js"
   },
   "keywords": [
     "rtorrent",
