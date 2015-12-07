@@ -2,7 +2,10 @@
   "name": "xmlrpcli",
   "version": "0.1.0",
   "description": "basic rtorrent xmlrpc cli",
-  "main": "xmlrpcli.js",
+  "main": "index.js",
+  "bin": {
+    "xmlrpcli": "./index.js"
+  },
   "keywords": [
     "rtorrent",
     "xmlrpc",
