@@ -1,11 +1,24 @@
 module.exports = XMLRPCClient
+const debug = require('debug')('xmlrpcli:client')
+const url = require('url')
 const xmlrpc = require('xmlrpc')
+const util = require('util')
 
 function XMLRPCClient (opts) {
   var opt = {}
 
-  opt.host = opts.host || 'localhost'
-  opt.path = opts.path || '/'
+  if (!opts.url) {
+    throw new Error('`opts.url` is a required parameter.')
+  }
+  if (opts.url.substring(0, 4) !== 'http') {
+    opts.url = (opts.insecure ? 'http://' : 'https://') + opts.url
+  }
+
+  const parsedUrl = url.parse(opts.url)
+
+  opt.host = parsedUrl.hostname
+  opt.port = parsedUrl.port
+  opt.path = parsedUrl.path || '/'
 
   if (opts.username || opts.password) {
     opt.basic_auth = {}
@@ -13,7 +26,9 @@ function XMLRPCClient (opts) {
     opt.basic_auth.pass = opts.password
   }
 
-  opt.rejectUnauthorized = opt.insecure
+  opt.rejectUnauthorized = opts.insecure
+
+  debug('Creating object with params: \n%o', opt)
 
   this.client = xmlrpc[opt.rejectUnauthorized ? 'createClient' : 'createSecureClient'](opt)
 

@@ -3,16 +3,18 @@ const readline = require('readline')
 const XMLRPCClient = require('../')
 const argv = require('minimist')(process.argv.slice(2), {
   alias: {
-    h: 'host',
+    h: 'url',
     u: 'username',
     user: 'username',
     p: 'password',
     pass: 'password',
-    d: 'path',
     i: 'insecure'
   },
+  string: [
+    'url'
+  ],
   default: {
-    host: 'localhost',
+    url: 'https://localhost',
     path: '/',
     insecure: false
   },
@@ -21,19 +23,16 @@ const argv = require('minimist')(process.argv.slice(2), {
 
 if (process.argv.length === 2 || argv.help) {
   console.log(
-`xmlrpcli v0.2.0
-usage: xmlrpcli [-h host] [-d path] [-u username] [-p password] [[--insecure]]
-  -h, --host <host>
-    Specify an IP address or domain name, without path or query string.
+`xmlrpcli v0.3.0
+usage: xmlrpcli [-h host-url] [-u username] [-p password] [[--insecure]]
+  -h, --url <host-url>
+    Specify host URL with path to RPC endpoint.
 
-  -d, --path <path>
-    Specify a URL path, ex. \`/rutorrent/RPC2\`.
+  -u, --user, --username <username>
+    Specify username for basic authentication.
 
-  -u, --user, --username <un>
-    Specify a username for basic authentication.
-
-  -p, --pass, --password <pw>
-    Specify a password for basic authentication.
+  -p, --pass, --password <password>
+    Specify password for basic authentication.
 
   -i, --insecure
     NOT RECOMMENDED: force HTTP (instead of HTTPS) connection.`)
